@@ -30,18 +30,14 @@ public class AppPropServiceImpl implements AppPropService{
 	}
 	
 	public static List<AppProp> approp =new ArrayList<>();
-//	public static AppProp aprop = new AppProp();
-//	public static AppProp aprop1 = new AppProp();
-//	static{
-//		
-//		aprop.setCode("app1");
-//		aprop.setVersion("v1");
-//		aprop1.setCode("app2");
-//		aprop1.setVersion("v2");
-//		approp.add(aprop);
-//		approp.add(aprop1);
-//		LOGGER.info("----------------------------------"+approp);
-//		}
+	public static AppProp aprop = new AppProp("app1","v1");
+	public static AppProp aprop1 = new AppProp("app2","v2");
+	
+	static{
+		approp.add(aprop);
+		approp.add(aprop1);
+		LOGGER.info("----------------------------------"+approp);
+		}
 	public void save(String appCode, String version) {
 		LOGGER.info("hello--------------------");
 		apprepo.save(appCode, version);
@@ -49,16 +45,17 @@ public class AppPropServiceImpl implements AppPropService{
 	}
 	public AppProp retrieveProp(String appCode, String version){
 		LOGGER.info("Service------------");
-		AppProp ap=new AppProp("app1","v1");
+		AppProp ap=new AppProp();
 		for(AppProp ap1:approp)	{
 			if (ap1.getCode().equals(appCode)&& ap1.getVersion().equals(version)) {
-				LOGGER.info(ap1.getCode());
-				return ap;
+				LOGGER.info(ap1.getCode()+" "+ap1.getVersion());
+				return ap1;
 			}
 		}
 		return null;
 		}
 	public String retrieveCode(String appCode){
+		LOGGER.info("Service------------");
 		for(AppProp ap:approp)	{
 			if (appCode.equals(ap.getCode())) {
 				return ap.getVersion();

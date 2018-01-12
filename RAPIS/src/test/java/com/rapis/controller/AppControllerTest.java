@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -31,13 +32,22 @@ import main.java.com.rapis.controller.AppController;
 import main.java.com.rapis.domain.AppProp;
 import main.java.com.rapis.service.AppPropService;
 import main.java.com.rapis.service.impl.AppPropServiceImpl;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+//import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//@RunWith(SpringRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@WebMvcTest(controllers = {AppController.class})
+//@ContextConfiguration(classes={RapisDemo.class})
+//@SpringApplicationConfiguration(classes = AppController.class)
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = {AppController.class})
-@ContextConfiguration(classes={RapisDemo.class})
+@SpringBootTest(classes = RapisDemo.class)
+@WebAppConfiguration
 public class AppControllerTest {
 	
 
-	@MockBean
+	@Autowired
 	private AppPropService appService;
 	 private static final Logger LOGGER = Logger.getLogger(AppControllerTest.class);
 	 
@@ -53,12 +63,11 @@ public class AppControllerTest {
 	@Test
 	public void retrievePropertiesTest() throws Exception {
 		LOGGER.info("INFO TEST");
-		LOGGER.info("INFO TEST-------------------");
-		AppProp ap=new AppProp("app1","v1");
-		 Mockito.when(
-				 appService.retrieveProp("app1","v1")).thenReturn(ap);
+//		AppProp ap=new AppProp("app1","v1");
+//		 Mockito.when(
+//				 appService.retrieveProp("app1","v1")).thenReturn(ap);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.get("//api/app1/config/v1")
+				.get("/api/app1/config/v1/")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON);
 		LOGGER.info("INFO TEST complete");

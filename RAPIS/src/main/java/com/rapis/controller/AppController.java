@@ -31,11 +31,12 @@ public class AppController {
 	@Autowired(required=true)
 		private AppPropService apService;
 
-		 @RequestMapping(value = "/api/{appCode}/config/{version}", method = RequestMethod.GET)
+	@GetMapping(value = "/api/{appCode}/config/{version}/")
 		public ResponseEntity<AppProp> retrieveProperties(@PathVariable String appCode, @PathVariable String version) {
 			 LOGGER.info("application properties to fetch: ");
 			 LOGGER.info(appCode +" "+version);
 			AppProp ap= apService.retrieveProp(appCode,version);
+			LOGGER.info(ap);
 			return ResponseEntity.status(HttpStatus.OK).body(ap);
 		}
 		
@@ -43,6 +44,7 @@ public class AppController {
 		public ResponseEntity<String> retrieveAppCode(@PathVariable String appCode) {
 			LOGGER.info("application properties to fetch by appCode: ");
 			String ap= apService.retrieveCode(appCode);
+			LOGGER.info(ap);
 			return ResponseEntity.status(HttpStatus.OK).body(ap);
 		}
 		

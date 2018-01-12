@@ -13,6 +13,9 @@ public class AppProp {
 	private String appCode;
 	@Column
 	private String version;
+	public AppProp() {
+		
+	}
 	public AppProp(String appCode, String version) {
 		this.appCode=appCode;
 		this.version=version;
