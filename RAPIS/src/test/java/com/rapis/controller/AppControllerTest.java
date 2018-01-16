@@ -72,6 +72,10 @@ public class AppControllerTest {
 				.contentType(MediaType.APPLICATION_JSON);
 		LOGGER.info("INFO TEST complete");
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		MockHttpServletResponse response = result.getResponse();
+
+		assertEquals(HttpStatus.OK.value(), response.getStatus());
+
 
 	}
 	@Test

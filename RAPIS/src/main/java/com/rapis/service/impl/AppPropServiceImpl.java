@@ -41,6 +41,7 @@ public class AppPropServiceImpl implements AppPropService{
 	public void save(String appCode, String version) {
 		LOGGER.info("hello--------------------");
 		apprepo.save(appCode, version);
+		LOGGER.info("saved!");
 		
 	}
 	public AppProp retrieveProp(String appCode, String version){

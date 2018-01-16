@@ -9,9 +9,9 @@ import javax.persistence.Table;
 @Table(name = "AppProp")
 public class AppProp {
 	@Id
-	@Column
+	@Column(name="APPCODE")
 	private String appCode;
-	@Column
+	@Column(name="VERSION")
 	private String version;
 	public AppProp() {
 		
