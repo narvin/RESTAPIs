@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import main.java.com.rapis.service.AppPropService;
 import main.java.com.rapis.service.impl.AppPropServiceImpl;
-import test.java.com.rapis.controller.AppControllerTest;
+//import test.java.com.rapis.controller.AppControllerTest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,10 +48,9 @@ public class AppController {
 			return ResponseEntity.status(HttpStatus.OK).body(ap);
 		}
 		
-		@PostMapping(value = "/api/{appCode}/config/{version}")
-		public ResponseEntity<String> saveProperties(@RequestParam String appCode, @RequestParam String version) {
-			LOGGER.info("application properties to save by appCode: ");
-			 LOGGER.info("application properties to save: ");
+		@PostMapping("/appl/{appCode}/config/{version}/")
+		public ResponseEntity<String> saveProperties(@PathVariable String appCode, @PathVariable String version) {
+			LOGGER.info("application properties to save by appCode----------: ");
 			 apService.save(appCode, version);
 			return ResponseEntity.status(HttpStatus.OK).body("Ok");
 		}

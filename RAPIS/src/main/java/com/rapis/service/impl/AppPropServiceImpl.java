@@ -40,6 +40,7 @@ public class AppPropServiceImpl implements AppPropService{
 		}
 	public void save(String appCode, String version) {
 		LOGGER.info("hello--------------------");
+		LOGGER.info(appCode+" " +version);
 		apprepo.save(appCode, version);
 		LOGGER.info("saved!");
 		

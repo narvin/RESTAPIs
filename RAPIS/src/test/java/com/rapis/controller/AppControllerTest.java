@@ -34,6 +34,8 @@ import main.java.com.rapis.service.AppPropService;
 import main.java.com.rapis.service.impl.AppPropServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 //import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //@RunWith(SpringRunner.class)
@@ -60,46 +62,50 @@ public class AppControllerTest {
 	    public void setup() {
 	        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	    }
-	@Test
-	public void retrievePropertiesTest() throws Exception {
-		LOGGER.info("INFO TEST");
-//		AppProp ap=new AppProp("app1","v1");
-//		 Mockito.when(
-//				 appService.retrieveProp("app1","v1")).thenReturn(ap);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.get("/api/app1/config/v1/")
-				.accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON);
-		LOGGER.info("INFO TEST complete");
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-		MockHttpServletResponse response = result.getResponse();
-
-		assertEquals(HttpStatus.OK.value(), response.getStatus());
-
-
-	}
-	@Test
-	public void retrieveAppCodeTest() throws Exception {
-//		AppProp mockAppProp = new AppProp();
+//	@Test
+//	public void retrievePropertiesTest() throws Exception {
+//		LOGGER.info("INFO TEST");
+////		AppProp ap=new AppProp("app1","v1");
+////		 Mockito.when(
+////				 appService.retrieveProp("app1","v1")).thenReturn(ap);
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.get("/api/app1/config/v1/")
+//				.accept(MediaType.APPLICATION_JSON)
+//				.contentType(MediaType.APPLICATION_JSON);
+//		LOGGER.info("INFO TEST complete");
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+//		MockHttpServletResponse response = result.getResponse();
 //
-//		String exampleCourseJson = "{\"appCode\":\"app3\",\"version\":\"v3\"}";
-		LOGGER.info("INFO TEST2-------------------");
-		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.get("/api/app1/config/")
-				.accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON);
-
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-	}
+//		assertEquals(HttpStatus.OK.value(), response.getStatus());
+//
+//
+//	}
+//	@Test
+//	public void retrieveAppCodeTest() throws Exception {
+////		AppProp mockAppProp = new AppProp();
+////
+////		String exampleCourseJson = "{\"appCode\":\"app3\",\"version\":\"v3\"}";
+//		LOGGER.info("INFO TEST2-------------------");
+//		RequestBuilder requestBuilder = MockMvcRequestBuilders
+//				.get("/api/app1/config/")
+//				.accept(MediaType.APPLICATION_JSON)
+//				.contentType(MediaType.APPLICATION_JSON);
+//
+//		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+//	}
 	@Test
 	public void saveAppCodeTest() throws Exception {
 		LOGGER.info("INFO TEST3-------------------");
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.post("/api/app1/config/v1")
+				.post("/appl/{appCode}/config/{version}/", "app4","v4")
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON);
-
+		LOGGER.info("TEST3 Completed---------------");
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		
+//		mockMvc.perform(post("/appl/app2/config/")
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
 	}
 
 }
